@@ -1,1 +1,13 @@
-
+version: '3'
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    ports:
+      - '5678:5678'
+    environment:
+      - N8N_HOST=${RENDER_EXTERNAL_HOSTNAME}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - NODE_ENV=production
+      - N8N_CONFIG_FILES=/tmp/n8n_config.json
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
