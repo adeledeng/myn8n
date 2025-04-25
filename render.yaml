@@ -1,1 +1,23 @@
-
+services:
+  - type: web
+    name: my-n8n
+    runtime: docker
+    repo: https://github.com/adeledeng/my-n8n
+    branch: main
+    dockerComposeFile: docker-compose.yml
+    envVars:
+      - key: N8N_HOST
+        fromService:
+          type: web
+          name: my-n8n
+          property: host
+      - key: N8N_PORT
+        value: 5678
+      - key: N8N_PROTOCOL
+        value: https
+      - key: NODE_ENV
+        value: production
+      - key: N8N_CONFIG_FILES
+        value: /tmp/n8n_config.json
+      - key: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+        value: true
